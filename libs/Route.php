@@ -65,7 +65,12 @@
                             $Storecontroller = $controller;
                         }
                     }
-                    $this->getController();
+                    /**
+                     * We call the method that the controller retrieves for us
+                     * 
+                     * Basically you must execute as follows TestController::index()
+                     */
+                    $this->getController("index", $Storecontroller);
                 }
             } else {
                 /**
@@ -74,6 +79,80 @@
                 
             }
 
+        }
+
+        /**
+         * This function will help us to invoke the controller with the method that it must execute
+         * @param {} $method
+         * @param {} $controller
+         */
+        public function getController($method, $controller) {
+            /**
+             * Method
+             */
+            $methodController = "";
+            /**
+             * We check if 'index' is or not the method or function of the controller
+             */
+            if($method == "index" || $method == "") {
+                $methodController = "index";
+            } else {
+                $methodController = $method;
+            }
+            /**
+             * We include the controller
+             */
+            $this->includeController($controller);
+
+            /**
+             * Check if class has been defined
+             * We check if the class exists
+             */
+            if(class_exists($controller)) {
+                /**
+                 * We perform an instance of the included controller
+                 * $ClassTemp = new TestController();
+                 * We create a temporary class based on the '$controller' variable
+                 * Example:
+                 * (TestController)
+                 * $class = new TestController();
+                 */
+                $ClassTemp = new $controller();
+                /**
+                 * Check the contents of a variable can be called as a function
+                 * We check if the function or method of this class can be called
+                 */
+                if(is_callable(array($ClassTemp, $methodController))) {
+                    /**
+                     * We make a call to the method of this class
+                     * class->index();
+                     */
+                    $ClassTemp->$methodController();
+                } else {
+                    die("The method does not exist");
+                }
+            } else {
+                die("Class does not exist");
+            }
+        }
+        
+        /**
+         * This function will include the controller, that is: include ("TestController.php")
+         * @param {} $controller
+         */
+        public function includeController($controller){
+            /**
+             * Checks if there is a file or directory
+             * Validating if the file exists or not
+             */
+            if(file_exists(APP_ROUTE . "controller/" . $controller . ".php")) {
+                /**
+                 * If it exists we include it
+                 */
+                include APP_ROUTE . "controller/" . $controller . ".php";
+            } else {
+                die("Error finding driver file");
+            }
         }
     }
 ?>
