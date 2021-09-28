@@ -8,9 +8,9 @@
     // Host
     define("HOST", "localhost");
     // Database
-    define("DB", "mipss_ib1030ca");
+    define("DB", "mipss_");
     // User
     define("USER", "root");
     // Password
-    define("PASSWORD", "12345678");
+    define("PASSWORD", "");
 ?>
