@@ -5,7 +5,7 @@
      * Date: 28/09/2021
      * Time: 08:39 PM  
      */
-    class UsersController {
+    class UserController {
         public function index() {
             echo "I";
         }

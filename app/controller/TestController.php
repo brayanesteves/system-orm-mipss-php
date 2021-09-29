@@ -6,6 +6,11 @@
      * Time: 05:05 PM 
      */
     class TestController {
-
+        public function index() {
+            echo "I";
+        }
+        public function insert() {
+            echo "A";
+        }
     }
 ?>
