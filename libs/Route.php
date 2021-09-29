@@ -76,7 +76,35 @@
                 /**
                  * Controllers and Methods
                  */
-                
+                /**
+                 * The route status will serve to validate if the route of the controller and the method is correct
+                 */
+                $status = false;
+                foreach($this->_controllers as $route => $controller) {
+                    /**
+                     * ($paths) the array of routes that we put in the browser
+                     * $paths[0]
+                     * Example:
+                     * http://localhost/system-orm-mipss-php/test/args
+                     *                                        [0] [1]
+                     * We perform a 'trim' to the route to clean the "/", that is:
+                     * "/users" => "userController"
+                     *   $route       $controller
+                     */
+                    if(trim($route, "/") == $paths[0]) {
+                        $status = true;
+                        $_controller = $controller;
+                        $method = "";
+                        if(count($paths) > 1) {
+                            $method = $paths[1];
+                        }
+                        $this->getController($method, $_controller);
+                    }
+                }
+
+                if($status == false) {
+                    die("Route error");
+                }
             }
 
         }
@@ -151,6 +179,7 @@
                  */
                 include APP_ROUTE . "controller/" . $controller . ".php";
             } else {
+                
                 die("Error finding driver file");
             }
         }
