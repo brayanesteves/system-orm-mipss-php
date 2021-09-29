@@ -9,6 +9,7 @@
     define("VIEWS_ROUTE", ROUTE_BASE .  "views/");
     define(     "ROUTES",  APP_ROUTE . "routes/");
 
+    include           "Views.php";
     include           "Route.php";
     include ROUTES . "routes.php";
 ?>
