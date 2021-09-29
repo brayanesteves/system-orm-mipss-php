@@ -11,9 +11,11 @@
     namespace View;
     class Views {
         /**
-         * 
+         * @param {string} $path route file '.php'
+         * @param {string} $key name variable
+         * @param {string} $value value variable $key
          */
-        public static function create($path) {
+        public static function create($path, $key = null, $value = null) {
             /**
              * We check if the variable exists $path
              */
@@ -60,11 +62,39 @@
                  * Check if that file exists
                  */
                 if(file_exists(VIEWS_ROUTE . $route)) {
+                    /**
+                     * Check if it exists '$key'
+                     */
+                    if(!is_null($key)) {
+                        if(is_array($key)) {
+                            /**
+                             * I will extract the 'keys' and convert them to variable
+                             */
+                            extract($key, EXTR_PREFIX_SAME, "");
+                        } else {
+                            /**
+                             * Example:
+                             * ("index", "users", $users)
+                             * 
+                             * ${$key} = $value;
+                             * 
+                             * Example:
+                             * ("index", "users", $users)
+                             *           $users = $users;
+                             * 
+                             * Other example:
+                             * ("index", "usrs", $users)
+                             *            $usrs = $users;
+                             */
+                            ${$key} = $value;
+                        }
+                    }
                     include VIEWS_ROUTE . $route;
                 } else {
                     die("The path does not exist");
                 }
             }
+            return null;
         }        
     }
 ?>

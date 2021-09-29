@@ -8,5 +8,8 @@
 </head>
 <body>
     <h1>Access List</h1>
+    <div class="content">
+        <?php echo json_encode($users); ?>
+    </div>
 </body>
 </html>
