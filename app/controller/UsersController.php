@@ -136,7 +136,18 @@
             $users = Usr::find($Rfrnc);
             echo "<b>Username:</b> ". $users->Usrnm . " <b>Password:</b> " . $users->Psswrd . "<br />";
         }
-        
+
+        /**
+         * Example:
+         * 
+         */
+        public function test_list() {
+            $users = Usr::all();
+            foreach($users as $user) {
+                echo "<b>Reference:</b> ". $user->Rfrnc . " <b>Username:</b> ". $user->Usrnm . " <b>Password:</b> " . $user->Psswrd . "<br />";
+            }
+        }
+
         /**
          * Example
          * http://localhost/system-orm-mipss-php/users/test_save

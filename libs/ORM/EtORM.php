@@ -124,5 +124,21 @@
             $response = self::where("Rfrnc", "", $Rfrnc);
             return $response[0];
         }
+
+        public static function all() {
+            $query = "SELECT * FROM " . static::$table;
+            // echo $query;
+            $class = get_called_class();
+            self::getConnect();
+            $response = self::$cnnctn->prepare($query);
+            // $response->setFetchMode(PDO::FETCH_CLASS, $class);
+            $response->execute();
+            // $rows = $response->fetch();
+            // echo count($rows);
+            foreach($response as $row) {
+                $object[] = new $class($row);
+            }
+            return $object;
+        }
     }
 ?>
