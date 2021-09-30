@@ -11,5 +11,8 @@
     namespace App\model;
     use libs\ORM\Model;
     class Usr extends Model {
-        
+        /**
+         * Name table
+         */
+        protected static $table = "0_Usrs";
     }

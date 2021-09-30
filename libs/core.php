@@ -5,7 +5,7 @@
      * Date: 28/09/2021
      * Time: 01:12 PM
      */
-    include "help/helps.php";
+    require_once("help/helps.php");
     define(  "APP_ROUTE", ROUTE_BASE .    "app/");
     define("VIEWS_ROUTE", ROUTE_BASE .  "views/");
     define(    "LIBRARY", ROUTE_BASE .   "libs/");
@@ -15,13 +15,14 @@
     /**
      * Configuration
      */
-    include ROUTE_BASE .  "config/config.php";
-    include              "ORM/Connection.php";
-    include                   "ORM/Model.php";
+    require_once(ROUTE_BASE . "config/config.php");
+    require_once("ORM/Connection.php");
+    require_once("ORM/EtORM.php");
+    require_once("ORM/Model.php");
 
     includeModels();
     
-    include           "Views.php";
+    require_once("Views.php");
     include           "Route.php";
     include ROUTES . "routes.php";
 ?>

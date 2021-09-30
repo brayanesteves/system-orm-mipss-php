@@ -21,7 +21,9 @@
             $user->DtAdmssn     = "0001-01-01";
             $user->ChckTm       = "00:00:00";
 
-            echo $user->Usrnm;
+            //echo $user->Usrnm;
+
+            $user->getTable();
         }
 
         public function test() {
