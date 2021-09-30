@@ -11,6 +11,6 @@
     $route = new Route();
     $route->controllers(array(
         "/"      => "MainController",
-        "/users" => "UserController"
+        "/users" => "UsersController"
     ));
 ?>

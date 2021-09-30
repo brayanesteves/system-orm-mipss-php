@@ -160,7 +160,7 @@
                     die("The method does not exist");
                 }
             } else {
-                die("Class does not exist");
+                die("Class does not exist. Check the 'core.php'");
             }
         }
         
