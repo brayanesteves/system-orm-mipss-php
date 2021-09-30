@@ -28,6 +28,39 @@
             echo $user->Rfrnc;
         }
 
+        public function search() {
+            
+        }
+        public function insert() {
+            
+        }
+
+        /**
+         * Example:
+         * http://localhost/system-orm-mipss-php/users/test_search
+         */
+        public function test_search() {
+            $users = Usr::where("Usrnm", "", "Brayan");
+            foreach($users as $user) {
+                echo "<b>Username:</b> ". $user->Usrnm . " <b>Password:</b> " . $user->Psswrd . "<br />";
+            }
+        }
+
+        /**
+         * Example:
+         * http://localhost/system-orm-mipss-php/users/test_search_params?user=Brayan
+         */
+        public function test_search_params() {
+            $_user = $_REQUEST['user'];
+            $users = Usr::where("Usrnm", "", $_user);
+            foreach($users as $user) {
+                echo "<b>Username:</b> ". $user->Usrnm . " <b>Password:</b> " . $user->Psswrd . "<br />";
+            }
+        }
+        /**
+         * Example:
+         * http://localhost/system-orm-mipss-php/users/test
+         */
         public function test() {
             /**
              * Fake data
@@ -98,8 +131,28 @@
              */
             return Views::create("users.test", "users", array("users" => $users));
         }
-        public function insert() {
-            
-        }
+
+        /**
+         * Example
+         * http://localhost/system-orm-mipss-php/users/test_save
+         */
+        public function test_save() {
+            $user               = new Usr();
+            $user->Usrnm        = "Brayan";
+            $user->Psswrd       = 1234;
+            $user->Rfrnc_Prsn   = 1;
+            $user->UsrTyp_Rfrnc = 1;
+            $user->Cndtn        = 1;
+            $user->Rmvd         = 0;
+            $user->Lckd         = 0;
+            $user->DtAdmssn     = "0001-01-01";
+            $user->ChckTm       = "00:00:00";
+
+            //echo $user->Usrnm;
+
+            $user->getTable();            
+            $user->save();
+            echo $user->Rfrnc;
+        }        
     }
 ?>

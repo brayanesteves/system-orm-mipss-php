@@ -95,6 +95,26 @@
                 return false;
             }
         }
+
+        /**
+         * 
+         */
+        public static function where($column, $operador = "", $value) {
+            $query = "SELECT * FROM " . static::$table . " WHERE " . $column . " = :" . $column;
+            // echo $query;
+            $class = get_called_class();
+            self::getConnect();
+            $response = self::$cnnctn->prepare($query);
+            $response->bindParam(':' . $column, $value);
+            // $response->setFetchMode(PDO::FETCH_CLASS, $class);
+            $response->execute();
+            // $rows = $response->fetch();
+            // echo count($rows);
+            foreach($response as $row) {
+                $object[] = new $class($row);
+            }
+            return $object;
+        }
         
     }
 ?>
