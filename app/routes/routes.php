@@ -11,6 +11,7 @@
     $route = new Route();
     $route->controllers(array(
         "/"      => "MainController",
-        "/users" => "UsersController"
+        "/users" => "UsersController",
+        "/salesinvoice" => "SalesInvoiceController",
     ));
 ?>

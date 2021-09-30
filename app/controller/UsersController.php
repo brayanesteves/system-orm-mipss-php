@@ -12,7 +12,7 @@
         public function index() {
             $user               = new Usr();
             $user->Usrnm        = "Brayan";
-            $user->Passwrd      = 1234;
+            $user->Psswrd       = 1234;
             $user->Rfrnc_Prsn   = 1;
             $user->UsrTyp_Rfrnc = 1;
             $user->Cndtn        = 1;
@@ -23,7 +23,9 @@
 
             //echo $user->Usrnm;
 
-            $user->getTable();
+            $user->getTable();            
+            $user->save();
+            echo $user->Rfrnc;
         }
 
         public function test() {

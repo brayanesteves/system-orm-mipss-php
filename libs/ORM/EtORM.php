@@ -31,10 +31,13 @@
 
         public function save() {
             $values   = $this->getColumns();
+            /**
+             * A variable that will store the columns
+             */
             $filtered = null;
             foreach ($values as $key => $value) {
                 /**
-                 * 
+                 * Separate if it is 'Rfrnc' - If not add it to the 'array'
                  */
                 if($value !== null && !is_integer($key) && $value !== '' && strpos($key, 'obj_') === false && $key !== 'Rfrnc') {
                     if($value === false) {
@@ -45,6 +48,9 @@
                 }
                 // echo $key . "<br />";
             }
+            /**
+             * Getting the columns
+             */
             $columns = array_keys($filtered);
             // echo json_encode($columns);
 
@@ -66,6 +72,7 @@
                 $query   = "INSERT INTO " . static::$table . " ($columns) VALUES ($params)";
                 // echo $query;
             }
+            // echo $query;
             /**
              * Let's prepare the query
              */
@@ -81,8 +88,8 @@
              * We made a response
              */
             if($response->execute()) {
-                $this->Rfrnc   = self::$connctn->lastInsertId();
-                self::$connctn = null;
+                $this->Rfrnc   = self::$cnnctn->lastInsertId();
+                self::$cnnctn = null;
                 return true;
             } else {
                 return false;

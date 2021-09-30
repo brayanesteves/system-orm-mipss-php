@@ -12,7 +12,9 @@
         }
         
         function __get($name) {
-            return $this->data[$name];
+            if(array_key_exists($name, $this->data)) {
+                return $this->data[$name];
+            }
         }                
         function __set($name, $value) {
             $this->data[$name] = $value;
