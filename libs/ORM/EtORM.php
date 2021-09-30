@@ -116,5 +116,13 @@
             return $object;
         }
         
+        /**
+         * 
+         */
+        public static function find($Rfrnc) {
+            // echo get_called_class();
+            $response = self::where("Rfrnc", "", $Rfrnc);
+            return $response[0];
+        }
     }
 ?>
