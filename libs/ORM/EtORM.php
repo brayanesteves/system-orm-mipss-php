@@ -181,5 +181,39 @@
                 return false;
             }
         }
+
+        /**
+         * 
+         */
+        public function procedure($procedure, $params = null) { 
+            $query = "CALL " . $procedure;
+            self::getConnect();
+            if(!is_null($params)) {
+                $_params = "";
+                for($i = 0; $i < count($params); $i++) { 
+                    $_params .= ":" . $i . ",";
+                }
+                $_params  = trim($_params, ",");
+                $_params .= ")";
+                $query   .= "(" . $_params;
+            } else {
+                $query   .= "()";
+            }
+            // echo $query;
+            /**
+             * Adding Parameters to '$query'
+             */
+            $response = self::$cnnctn->prepare($query);
+            for($i = 0; $i < count($params); $i++) {
+                $response->bindParam(":" . $i, $params[$i]);                
+            }
+            $response->execute();
+
+            $object = [];
+            foreach($response as $row) {
+                $object[] = $row;                
+            }
+            return $object;
+        }
     }
 ?>

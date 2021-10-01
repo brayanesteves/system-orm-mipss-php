@@ -7,19 +7,16 @@
      */
     use View\Views;
     use App\model\Usr;
+    use \libs\ORM\EtORM;
     class UsersController {
 
-        public function index() {
-            
+        public function index() {            
         }
-
-        public function search() {
-            
+        public function search() {            
         }
-        public function insert() {
-            
+        public function insert() {            
         }
-
+        
         /**
          * Example:
          * http://localhost/system-orm-mipss-php/users/test
@@ -184,6 +181,7 @@
 
         /**
          * Example:
+         * http://localhost/system-orm-mipss-php/users/test_delete
          */
         public function test_delete() {
             $user = Usr::find(4);
@@ -195,6 +193,25 @@
                 }                
             } else {
                 echo "No records";
+            }
+        }
+
+        /**
+         * Example:
+         * http://localhost/system-orm-mipss-php/users/test_register
+         */
+        public function test_register() {
+            $et = new EtORM();
+            $et->procedure("0_Add", array("Argimiro", 1234, 1, 1, 1, 0, 0, "0001-01-01", "00:00:00"));
+            echo "<b>Save</b><br />";            
+        }
+
+        public function test_tolist() {
+            $et = new EtORM();
+            $users = $et->procedure("0_Usrs_ToList");
+            echo "<b>To List</b><br />";
+            foreach($users as $user) {
+                echo $user[1] . "<br />";
             }
         }
     }
