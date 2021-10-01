@@ -124,7 +124,7 @@
          */
         public function test_searching() {
             $users = Usr::find(12);
-            echo "<b>Username:</b> ". $users->Usrnm . " <b>Password:</b> " . $users->Psswrd . "<br />";
+            echo "<b>Reference:</b> ". $users->Rfrnc . " <b>Username:</b> ". $users->Usrnm . " <b>Password:</b> " . $users->Psswrd . "<br />";
         }
 
         /**
@@ -134,7 +134,7 @@
         public function test_searching_params() {
             $Rfrnc = $_REQUEST['Rfrnc'];;
             $users = Usr::find($Rfrnc);
-            echo "<b>Username:</b> ". $users->Usrnm . " <b>Password:</b> " . $users->Psswrd . "<br />";
+            echo "<b>Reference:</b> ". $users->Rfrnc . " <b>Username:</b> ". $users->Usrnm . " <b>Password:</b> " . $users->Psswrd . "<br />";
         }
 
         /**
@@ -180,6 +180,22 @@
             $users->Usrnm = "Robertson";
             $users->save();
             echo "<b>Update successful</b>";
+        }
+
+        /**
+         * Example:
+         */
+        public function test_delete() {
+            $user = Usr::find(4);
+            if(count($user)) {
+                if($user->delete()) {
+                    echo "Successfully removed";
+                } else {
+                    echo "Could not delete";
+                }                
+            } else {
+                echo "No records";
+            }
         }
     }
 ?>
