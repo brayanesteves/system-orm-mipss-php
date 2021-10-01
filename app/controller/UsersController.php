@@ -206,6 +206,10 @@
             echo "<b>Save</b><br />";            
         }
 
+        /**
+         * Example:
+         * http://localhost/system-orm-mipss-php/users/test_tolist
+         */
         public function test_tolist() {
             $et = new EtORM();
             $users = $et->procedure("0_Usrs_ToList");
