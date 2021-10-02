@@ -23,7 +23,7 @@
      * Function that allows redirection to another part 
      * $route: Route to where we want to go
      */
-    function redirect($route) {
+    function _redirect($route) {
         $urlmain = str_replace("index.php", "", $_SERVER['PHP_SELF']);
         header("location:/" . trim($urlmain, "/") . "" . $route);
     }
@@ -49,7 +49,8 @@
         $_SESSION["csrf_token"] = $csrf_token;
         echo $csrf_token;
     }
-        /**
+
+    /**
      * Validate CSRF token via sessions
      */
     function validate_csrf() {
@@ -89,5 +90,12 @@
      */
     function encrypt($string) {
         return crypt($string, '$2a$07$usesomesillystringforsalt$');
+    }
+
+    /**
+     * Redirecting
+     */
+    function redirecting() {
+        return new _Redirect();
     }
 ?>

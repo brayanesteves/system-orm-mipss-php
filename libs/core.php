@@ -20,6 +20,13 @@
     require_once("ORM/Connection.php");
     require_once("ORM/EtORM.php");
     require_once("ORM/Model.php");
+    require_once("help/class.inputfilter.php");
+
+    /**
+     * Libraries
+     */
+    require_once("vendor/Redirect.php");
+    require_once("vendor/Session.php");
 
     includeModels();
     
